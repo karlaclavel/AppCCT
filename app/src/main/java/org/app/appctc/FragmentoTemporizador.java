@@ -1,7 +1,6 @@
 package org.app.appctc;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
@@ -15,18 +14,20 @@ import android.widget.Toast;
 
 import java.util.Locale;
 
+/* FRAGMENTO TEMPORIZADOR: Temporizador con seleccion de minutos, inicio y reinicio */
+
 public class FragmentoTemporizador extends Fragment {
 
     private TextView text_temporizador;
     private TextView time_temporizador;
     private TextView button_star;
-
     private TextView button_reset;
 
+    // Clase que implementa un temporizador de cuenta regresiva (acción periodica)
     private CountDownTimer countDownTimer;
 
     public View onCreateView(LayoutInflater inflater, @androidx.annotation.Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Se infla el diseño del segmento desde XML
         View view = inflater.inflate(R.layout.activity_fragmento_temporizador, container, false);
 
         text_temporizador = view.findViewById(R.id.text_temporizador);
@@ -58,19 +59,14 @@ public class FragmentoTemporizador extends Fragment {
             countDownTimer.cancel();
         }
 
-        // Habilitar la edición del tiempo en el EditText
-        time_temporizador.setEnabled(true);
-
-        // Limpiar el texto del TextView del temporizador
         text_temporizador.setText("00:00");
-
-        // Habilitar el botón de inicio y deshabilitar el botón de reinicio
+        time_temporizador.setEnabled(true);
         button_star.setEnabled(true);
         button_reset.setEnabled(false);
     }
 
     private void iniciarTemporizador() {
-        // Obtener el valor ingresado por el usuario en el EditText
+        // Obtener el valor ingresado por el usuario en el EditText - time_temporizador
         String tiempoString = time_temporizador.getText().toString();
 
         if (tiempoString.isEmpty()) {
@@ -84,12 +80,15 @@ public class FragmentoTemporizador extends Fragment {
 
             // Convertir minutos a milisegundos
             long duracionMilisegundos = minutosSeleccionados * 60 * 1000;
+
             time_temporizador.setEnabled(false);
             button_star.setEnabled(false);
             button_reset.setEnabled(true);
 
+            // Instancia de la clase countDownTimer con la duración y el intervalo de actualización
             countDownTimer = new CountDownTimer(duracionMilisegundos, 1000) {
                 @Override
+                // onTick actualiza el TextView
                 public void onTick(long millisUntilFinished) {
                     long segundosRestantes = millisUntilFinished / 1000;
                     long minutos = segundosRestantes / 60;
@@ -98,6 +97,7 @@ public class FragmentoTemporizador extends Fragment {
                     text_temporizador.setText(tiempoRestante);
                 }
 
+                // onFinish establece el TextView en predeterminado
                 @Override
                 public void onFinish() {
                     text_temporizador.setText("00:00");

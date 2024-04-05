@@ -17,12 +17,12 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
+    // Se carga el framento en el contenedor asignado
     private void loadFragment(Fragment fragment, String title) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();
-
         TextView textView = findViewById(R.id.titulo_fragmento);
         textView.setText(title);
     }
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        //Proporciona una animacion de hamburguesa. Actúa como un listener para abrir y cerrar el drawer.
+        //Menu, actua como un listener para abrir y cerrar el drawer.
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, menu , toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         menu.addDrawerListener(toggle);
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
         /*** FRAGMENTOS ***/
 
-        // Establecer el listener para los items del menú
+        // Establecer el listener para los items del menú, cargando con loadFragment()
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -64,14 +64,12 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 } else if (id == R.id.temporizador) {
                     loadFragment(new FragmentoTemporizador(), "TEMPORIZADOR");
                 }
-
                 menu.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
 
         loadFragment(new FragmentoContador(), "CONTADOR");
-
     }
 
 
@@ -80,15 +78,10 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         int id = item.getItemId();
 
         if (id == R.id.contador) {
-            // Realiza la acción para la primera opción
             Toast.makeText(this, "contador inicializado", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.cronometro) {
-            // Realiza la acción para la segunda opción
-            // Por ejemplo, mostrar un Toast o abrir otro fragmento
             Toast.makeText(this, "cronómetro inicializado", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.temporizador) {
-            // Realiza la acción para la segunda opción
-            // Por ejemplo, mostrar un Toast o abrir otro fragmento
             Toast.makeText(this, "temporizados inicializado", Toast.LENGTH_SHORT).show();
         }
 
