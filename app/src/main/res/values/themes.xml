@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AppCTC" parent="Theme.AppCompat.NoActionBar">
+
+        <item name="android:textViewStyle">@style/CustomFontStyle</item>
+        <item name="colorPrimary">@color/azul_principal</item>
+        <item name="colorPrimaryDark">@color/azul_oscuro</item>
+        <item name="colorAccent">@color/azul_claro</item>
+
+    </style>
+
+</resources>

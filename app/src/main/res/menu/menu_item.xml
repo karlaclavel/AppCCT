@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/menu/drawer_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/contador"
+            android:icon="@drawable/contador"
+            android:title="Contador" />
+        <item
+            android:id="@+id/cronometro"
+            android:icon="@drawable/cronometro"
+            android:title="Cronometro" />
+        <item
+            android:id="@+id/temporizador"
+            android:icon="@drawable/temporizador"
+            android:title="Temporizador" />
+
+    </group>
+
+</menu>
